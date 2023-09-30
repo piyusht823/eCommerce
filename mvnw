@@ -76,6 +76,7 @@ if [ -z "$JAVA_HOME" ] ; then
 fi
 
 # For Cygwin, ensure paths are in UNIX format before anything is touched
+
 if $cygwin ; then
   [ -n "$JAVA_HOME" ] &&
     JAVA_HOME=$(cygpath --unix "$JAVA_HOME")
@@ -90,6 +91,7 @@ if $mingw ; then
 fi
 
 if [ -z "$JAVA_HOME" ]; then
+  
   javaExecutable="$(which javac)"
   if [ -n "$javaExecutable" ] && ! [ "$(expr "\"$javaExecutable\"" : '\([^ ]*\)')" = "no" ]; then
     # readlink(1) is not available as standard on Solaris 10.
@@ -109,6 +111,7 @@ if [ -z "$JAVA_HOME" ]; then
   fi
 fi
 
+
 if [ -z "$JAVACMD" ] ; then
   if [ -n "$JAVA_HOME"  ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
@@ -122,6 +125,7 @@ if [ -z "$JAVACMD" ] ; then
   fi
 fi
 
+
 if [ ! -x "$JAVACMD" ] ; then
   echo "Error: JAVA_HOME is not defined correctly." >&2
   echo "  We cannot execute $JAVACMD" >&2
@@ -131,6 +135,7 @@ fi
 if [ -z "$JAVA_HOME" ] ; then
   echo "Warning: JAVA_HOME environment variable is not set."
 fi
+
 
 # traverses directory structure from process work directory to filesystem root
 # first directory with .mvn subdirectory is considered project base directory
@@ -157,17 +162,22 @@ find_maven_basedir() {
   printf '%s' "$(cd "$basedir" || exit 1; pwd)"
 }
 
+
 # concatenates all lines of a file
 concat_lines() {
   if [ -f "$1" ]; then
     # Remove \r in case we run on Windows within Git Bash
     # and check out the repository with auto CRLF management
+    
     # enabled. Otherwise, we may read lines that are delimited with
     # \r\n and produce $'-Xarg\r' rather than -Xarg due to word
     # splitting rules.
-    tr -s '\r\n' ' ' < "$1"
+   
+
+  tr -s '\r\n' ' ' < "$1"
   fi
 }
+
 
 log() {
   if [ "$MVNW_VERBOSE" = true ]; then
@@ -182,11 +192,11 @@ fi
 
 MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}; export MAVEN_PROJECTBASEDIR
 log "$MAVEN_PROJECTBASEDIR"
-
 ##########################################################################################
 # Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
 # This allows using the maven wrapper in projects that prohibit checking in binary data.
 ##########################################################################################
+
 wrapperJarPath="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar"
 if [ -r "$wrapperJarPath" ]; then
     log "Found $wrapperJarPath"
@@ -247,6 +257,8 @@ else
         fi
     fi
 fi
+
+
 ##########################################################################################
 # End of extension
 ##########################################################################################
@@ -292,15 +304,22 @@ if $cygwin; then
     MAVEN_PROJECTBASEDIR=$(cygpath --path --windows "$MAVEN_PROJECTBASEDIR")
 fi
 
+
+
 # Provide a "standardized" way to retrieve the CLI args that will
 # work with both Windows and non-Windows executions.
 MAVEN_CMD_LINE_ARGS="$MAVEN_CONFIG $*"
 export MAVEN_CMD_LINE_ARGS
 
+
+
 WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
 
 # shellcheck disable=SC2086 # safe args
+
+
 exec "$JAVACMD" \
+   
   $MAVEN_OPTS \
   $MAVEN_DEBUG_OPTS \
   -classpath "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" \
